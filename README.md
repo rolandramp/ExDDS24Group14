@@ -7,3 +7,9 @@ Arian Askari, Suzan Verberne, and Gabriella Pasi (ECIR 2022)](https://doi.org/10
 
 
 This paper reveres also to the following GitHub repository [EF_in_Legal_CQA-ECIR2022](https://github.com/arian-askari/EF_in_Legal_CQA-ECIR2022.git)
+
+
+## Setup
+
+Create a conda environment with `conda create -n ExDDsEx2 python=3.12` and activate it `conda activate ExDDsEx2`.
+With `pip install -r requirements.txt` all necessary libraries will be installed.
