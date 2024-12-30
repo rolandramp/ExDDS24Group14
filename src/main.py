@@ -1,6 +1,6 @@
 from avvo_downloader import AvvoDownloader
 import json
-
+from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     loader = AvvoDownloader()
@@ -8,4 +8,10 @@ if __name__ == '__main__':
     with open('../data/question_links_bankruptcy.json', 'r') as file:
         data = json.load(file)
 
-    print(loader.scrape_website('https://www.avvo.com/attorneys/285119.html'))
+    q_n_a_urls = []
+
+    for key in data.keys():
+        for url in data.get(key):
+            q_n_a_urls.append(url)
+
+    loader.scrape_website(q_n_a_urls[0])
