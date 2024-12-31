@@ -14,4 +14,5 @@ if __name__ == '__main__':
         for url in data.get(key):
             q_n_a_urls.append(url)
 
-    loader.scrape_website(q_n_a_urls[0])
+    for url in q_n_a_urls[:5]:
+        loader.scrape_website(url)
