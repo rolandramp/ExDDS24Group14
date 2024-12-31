@@ -38,15 +38,17 @@ class AvvoDownloader(BaseModel):
             answer_container = driver.find_element(By.ID, 'answers_container')
             answer_cards = answer_container.find_elements(By.CLASS_NAME, 'qa-lawyer-card')
 
-            loyers = []
+            lawyers = []
             posted_times = []
-            helpfullness = []
+            answer_card_text = []
             for answer_card in answer_cards:
-                loyers.append(answer_card.find_element(By.CLASS_NAME, 'name-specialty').find_element(By.TAG_NAME, 'a').get_attribute('href'))
+                lawyers.append(answer_card.find_element(By.CLASS_NAME, 'name-specialty').find_element(By.TAG_NAME, 'a').get_attribute('href'))
                 posted_times.append(answer_card.find_element(By.TAG_NAME, 'time').text)
-            print(loyers)
+                answer_card_text.append(answer_card.text)
+            print(lawyers)
             print(posted_times)
+            print(answer_card_text)
 
-            return (title, question, answers, loyers, posted_times)
+            return (title, question, answers_text, lawyers, posted_times, answer_card_text)
         finally:
             driver.quit()

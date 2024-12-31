@@ -14,5 +14,19 @@ if __name__ == '__main__':
         for url in data.get(key):
             q_n_a_urls.append(url)
 
-    for url in q_n_a_urls[:5]:
-        loader.scrape_website(url)
+    results = []
+
+    for url in q_n_a_urls[:10]:
+        (title, question, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
+        result = {
+            'title': title,
+            'question': question,
+            'answers': answers,
+            'lawyers': lawyers,
+            'posted_times': [str(time) for time in posted_times],
+            'answer_card_text': answer_card_text
+        }
+        results.append(result)
+
+    with open('results.json', 'w', encoding='utf-8') as json_file:
+        json.dump(results, json_file, ensure_ascii=False, indent=4)
