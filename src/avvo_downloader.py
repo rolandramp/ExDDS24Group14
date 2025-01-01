@@ -20,16 +20,20 @@ class AvvoDownloader(BaseModel):
         try:
             # Open the URL
             driver.get(url)
-            time.sleep(2)  # Wait for Cloudflare to process the request
+            time.sleep(5)  # Wait for Cloudflare to process the request
 
             # Extract the page page_content
             questions = driver.find_elements(By.CLASS_NAME, 'content-question')
-            title = (questions[0].find_element(By.TAG_NAME, 'div')
-                     .find_element(By.TAG_NAME, 'h1')
-                     .text)
-            print(title)
-            question = questions[0].find_element(By.XPATH, './/div//div//div//div//p').text
-            print(question)
+            if (questions is None) or (len(questions) == 0):
+                title = 'Not Found'
+                question = 'Not Found'
+            else:
+                title = (questions[0].find_element(By.TAG_NAME, 'div')
+                         .find_element(By.TAG_NAME, 'h1')
+                         .text)
+                print(title)
+                question = questions[0].find_element(By.XPATH, './/div//div//div//div//p').text
+                print(question)
             answers = driver.find_elements(By.CLASS_NAME, 'answer-body')
             answers_text = []
             for answer in answers:
