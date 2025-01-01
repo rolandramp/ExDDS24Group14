@@ -19,8 +19,8 @@ if __name__ == '__main__':
 
     results = []
     # if scraping fails go on from here
-    start:int = 188
-    end:int = 200
+    start:int = 454
+    end:int = 500
     for url in q_n_a_urls[start:end]:
         (title, question, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
         result = {
