@@ -55,6 +55,7 @@ class AvvoDownloader(BaseModel):
             print(answer_card_text)
 
             return (title, question, answers_text, lawyers, posted_times, answer_card_text)
+        except Exception as e:
+            return (None, None, None, None, None, None)
         finally:
             driver.quit()
-            return (None, None, None, None, None, None)
