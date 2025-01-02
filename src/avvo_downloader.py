@@ -57,3 +57,4 @@ class AvvoDownloader(BaseModel):
             return (title, question, answers_text, lawyers, posted_times, answer_card_text)
         finally:
             driver.quit()
+            return (None, None, None, None, None, None)

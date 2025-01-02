@@ -7,15 +7,26 @@ from pathlib import Path
 def scrape_websites(start:int, end:int, urls: list):
     for url in urls[start:end]:
         (title, question, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
-        result = {
-            'url': url,
-            'title': title,
-            'question': question,
-            'answers': answers,
-            'lawyers': lawyers,
-            'posted_times': [str(time) for time in posted_times],
-            'answer_card_text': answer_card_text
-        }
+        if title is None and question is None and answers is None and lawyers is None and posted_times is None and answer_card_text is None:
+            result = {
+                'url': url,
+                'title': 'Not Found',
+                'question': 'Not Found',
+                'answers': [],
+                'lawyers': [],
+                'posted_times': [],
+                'answer_card_text': []
+            }
+        else:
+            result = {
+                'url': url,
+                'title': title,
+                'question': question,
+                'answers': answers,
+                'lawyers': lawyers,
+                'posted_times': [str(time) for time in posted_times],
+                'answer_card_text': answer_card_text
+            }
         filename = f'results_n_{start}.json'
         with open(data_path.joinpath(filename), 'w', encoding='utf-8') as json_file:
             json.dump(result, json_file, ensure_ascii=False, indent=4)
@@ -40,4 +51,4 @@ if __name__ == '__main__':
     print(f'urls to scrape {len(q_n_a_urls)}')
 
     # if scraping fails go on from here (start end)
-    scrape_websites(750, 825, q_n_a_urls)
+    scrape_websites(1001, 1100, q_n_a_urls)
