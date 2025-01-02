@@ -1,3 +1,4 @@
+
 from avvo_downloader import AvvoDownloader
 import json
 from pathlib import Path
@@ -39,6 +40,4 @@ if __name__ == '__main__':
     print(f'urls to scrape {len(q_n_a_urls)}')
 
     # if scraping fails go on from here (start end)
-    scrape_websites(454, 500, q_n_a_urls)
-
-
+    scrape_websites(750, 825, q_n_a_urls)
