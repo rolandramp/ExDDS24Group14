@@ -4,6 +4,7 @@ from avvo_downloader import AvvoDownloader
 import json
 from pathlib import Path
 import polars as pl
+from datetime import datetime
 
 
 def scrape_websites(start: int, end: int, urls: list):
@@ -84,16 +85,18 @@ def extract_details(answer_card_texts: list) -> dict:
     return details
 
 
-def transform_files_to_data_frame(directory: str) -> pl.DataFrame:
+def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl.DataFrame:
     data_frame_list = []
-    for filename in os.listdir(directory):
+    json_files = [filename for filename in os.listdir(directory_path) if filename.endswith('.json')]
+    for filename in json_files:
         match = re.search(r'_n_(\d+)', filename)
         if match:
-            question_number =  int(match.group(1))
-            with open(Path.joinpath(Path(directory),filename), 'r', encoding='utf-8') as actual_file:
+            question_number = int(match.group(1))
+            with open(Path.joinpath(Path(directory_path), filename), 'r', encoding='utf-8') as actual_file:
                 data = json.load(actual_file)
             lawyers = [anonymize_lawyer_name_from_url(lawyer) for lawyer in data['lawyers']]
             details = extract_details(data['answer_card_text'])
+            posted_times = [extract_date(time) for time in data['posted_times']]
             df = pl.DataFrame({
                 'number': [question_number] * len(data['answers']),
                 'url': [data['url']] * len(data['answers']),
@@ -101,7 +104,7 @@ def transform_files_to_data_frame(directory: str) -> pl.DataFrame:
                 'question': [data['question']] * len(data['answers']),
                 'answers': data['answers'],
                 'lawyers': lawyers,
-                'posted_times': data['posted_times'],
+                'posted_times': posted_times,
                 'answer_card_text': data['answer_card_text'],
                 'stars': details['stars'],
                 'reviews': details['reviews'],
@@ -112,9 +115,26 @@ def transform_files_to_data_frame(directory: str) -> pl.DataFrame:
             data_frame_list.append(df)
     return pl.concat(data_frame_list)
 
-def create_result_data_frame(directory_path: str= '../data/scraped'):
-    df = transform_files_to_data_frame(directory_path)
-    print(df.head(5))
+
+def extract_date(date_string: str) -> datetime | None:
+    # Define the regex pattern to match the date
+    date_pattern = r'on (\w+ \d{1,2}, \d{4})'
+
+    # Search for the date in the string
+    match = re.search(date_pattern, date_string)
+
+    if match:
+        # Extract the date string
+        date_str = match.group(1)
+
+        # Parse the date string into a datetime object
+        date_obj = datetime.strptime(date_str, '%b %d, %Y')
+
+        return date_obj
+    else:
+        print(f'Date not found in {date_string}')
+        return None
+
 
 if __name__ == '__main__':
     loader = AvvoDownloader()
@@ -133,5 +153,10 @@ if __name__ == '__main__':
 
     print(f'urls to scrape {len(q_n_a_urls)}')
 
-    # if scraping fails go on from here (start end)
-    scrape_websites(8746, len(q_n_a_urls), q_n_a_urls)
+    # if scraping fails you can start from the last file that was scraped with start and end parameters
+    scrape_websites(0, len(q_n_a_urls), q_n_a_urls)
+
+    # transform files to data frame
+    df = transform_files_to_data_frame()
+    # save data frame to parquet
+    df.write_parquet('../data/all_questions_and_answer.parquet')
