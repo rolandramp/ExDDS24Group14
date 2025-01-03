@@ -14,6 +14,15 @@ This paper reveres also to the following GitHub repository [EF_in_Legal_CQA-ECIR
 Create a conda environment with `conda create -n ExDDsEx2 python=3.12` and activate it `conda activate ExDDsEx2`.
 With `pip install -r requirements.txt` all necessary libraries will be installed.
 
+### Selenium and Chrome Setup
+
+This project requires Selenium for web scraping. You will also need to have Google Chrome installed on your system, as well as the ChromeDriver that matches your Chrome version.
+
+1. **Install Google Chrome**: Download and install Google Chrome from [here](https://www.google.com/chrome/).
+
+2. **Install Selenium**: Selenium is included in the `requirements.txt` file, so it will be installed when you run `pip install -r requirements.txt`.
+
+
 ## Runtime Parameters
 
 The command line options for the script in **main.py** are as follows:  
@@ -23,7 +32,7 @@ The command line options for the script in **main.py** are as follows:
 - *--end*: This option specifies the end index for scraping. It is an integer value and defaults to None if not provided. It is used to determine the ending point in the list of URLs to scrape.  
 - *--directory*: This option specifies the directory path where the JSON files are located. It is a string value and defaults to *'../data/scraped'* if not provided. This directory is used when transforming JSON files to a DataFrame.
 
-## Example usage:
+## Example Usage:
 
 - `python main.py --scrape --start 0 --end 10`
 - `python main.py --transform --directory '../data/scraped'`
