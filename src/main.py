@@ -51,4 +51,4 @@ if __name__ == '__main__':
     print(f'urls to scrape {len(q_n_a_urls)}')
 
     # if scraping fails go on from here (start end)
-    scrape_websites(1002, 1100, q_n_a_urls)
+    scrape_websites(8746, len(q_n_a_urls), q_n_a_urls)
