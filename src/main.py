@@ -1,5 +1,6 @@
 import re
 import os
+import argparse
 from avvo_downloader import AvvoDownloader
 import json
 from pathlib import Path
@@ -94,24 +95,41 @@ def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl
             question_number = int(match.group(1))
             with open(Path.joinpath(Path(directory_path), filename), 'r', encoding='utf-8') as actual_file:
                 data = json.load(actual_file)
-            lawyers = [anonymize_lawyer_name_from_url(lawyer) for lawyer in data['lawyers']]
-            details = extract_details(data['answer_card_text'])
-            posted_times = [extract_date(time) for time in data['posted_times']]
-            df = pl.DataFrame({
-                'number': [question_number] * len(data['answers']),
-                'url': [data['url']] * len(data['answers']),
-                'title': [data['title']] * len(data['answers']),
-                'question': [data['question']] * len(data['answers']),
-                'answers': data['answers'],
-                'lawyers': lawyers,
-                'posted_times': posted_times,
-                'answer_card_text': data['answer_card_text'],
-                'stars': details['stars'],
-                'reviews': details['reviews'],
-                'rating': details['rating'],
-                'helpful': details['helpful'],
-                'lawyers_agree': details['lawyers_agree']
-            })
+            if data['title'] == 'Not Found' and data['question'] == 'Not Found':
+                df = pl.DataFrame({
+                    'number': question_number,
+                    'url': data['url'],
+                    'title': data['title'],
+                    'question': data['question'],
+                    'answers': None,
+                    'lawyers': None,
+                    'posted_times': None,
+                    'answer_card_text': None,
+                    'stars': None,
+                    'reviews': None,
+                    'rating': None,
+                    'helpful': None,
+                    'lawyers_agree': None
+                })
+            else:
+                lawyers = [anonymize_lawyer_name_from_url(lawyer) for lawyer in data['lawyers']]
+                details = extract_details(data['answer_card_text'])
+                posted_times = [extract_date(time) for time in data['posted_times']]
+                df = pl.DataFrame({
+                    'number': [question_number] * len(data['answers']),
+                    'url': [data['url']] * len(data['answers']),
+                    'title': [data['title']] * len(data['answers']),
+                    'question': [data['question']] * len(data['answers']),
+                    'answers': data['answers'],
+                    'lawyers': lawyers,
+                    'posted_times': posted_times,
+                    'answer_card_text': data['answer_card_text'],
+                    'stars': details['stars'],
+                    'reviews': details['reviews'],
+                    'rating': details['rating'],
+                    'helpful': details['helpful'],
+                    'lawyers_agree': details['lawyers_agree']
+                })
             data_frame_list.append(df)
     return pl.concat(data_frame_list)
 
@@ -137,26 +155,26 @@ def extract_date(date_string: str) -> datetime | None:
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Scrape websites and transform JSON files to DataFrame.')
+    parser.add_argument('--scrape', action='store_true', help='Scrape websites')
+    parser.add_argument('--transform', action='store_true', help='Transform JSON files to DataFrame')
+    parser.add_argument('--start', type=int, default=0, help='Start index for scraping')
+    parser.add_argument('--end', type=int, default=None, help='End index for scraping')
+    parser.add_argument('--directory', type=str, default='../data/scraped', help='Directory path for JSON files')
+    args = parser.parse_args()
+
     loader = AvvoDownloader()
 
-    data_path = Path('../data/scraped/')
+    data_path = Path(args.directory)
 
-    with open('../data/question_links_bankruptcy.json', 'r') as file:
-        data = json.load(file)
+    if args.scrape:
+        with open('../data/question_links_bankruptcy.json', 'r') as file:
+            data = json.load(file)
+        q_n_a_urls = [url for key in data.keys() for url in data.get(key)]
+        print(f'urls to scrape {len(q_n_a_urls)}')
+        scrape_websites(args.start, args.end if args.end else len(q_n_a_urls), q_n_a_urls)
 
-    q_n_a_urls = []
-
-    # try to scrape all files
-    for key in data.keys():
-        for url in data.get(key):
-            q_n_a_urls.append(url)
-
-    print(f'urls to scrape {len(q_n_a_urls)}')
-
-    # if scraping fails you can start from the last file that was scraped with start and end parameters
-    scrape_websites(0, len(q_n_a_urls), q_n_a_urls)
-
-    # transform files to data frame
-    df = transform_files_to_data_frame()
-    # save data frame to parquet
-    df.write_parquet('../data/all_questions_and_answer.parquet')
+    if args.transform:
+        df = transform_files_to_data_frame(args.directory)
+        df = df.sort(by='number')
+        df.write_parquet('../data/all_questions_and_answer.parquet')

@@ -13,3 +13,17 @@ This paper reveres also to the following GitHub repository [EF_in_Legal_CQA-ECIR
 
 Create a conda environment with `conda create -n ExDDsEx2 python=3.12` and activate it `conda activate ExDDsEx2`.
 With `pip install -r requirements.txt` all necessary libraries will be installed.
+
+## Runtime Parameters
+
+The command line options for the script in **main.py** are as follows:  
+- *--scrape*: This flag indicates that the script should perform the scraping of websites. When this flag is provided, the script will scrape the websites specified in the *question_links_bankruptcy.json* file.  
+- *--transform*: This flag indicates that the script should transform the JSON files into a DataFrame. When this flag is provided, the script will read the JSON files from the specified directory, process them, and save the resulting DataFrame as a Parquet file.  
+- *--start*: This option specifies the start index for scraping. It is an integer value and defaults to 0 if not provided. It is used to determine the starting point in the list of URLs to scrape.  
+- *--end*: This option specifies the end index for scraping. It is an integer value and defaults to None if not provided. It is used to determine the ending point in the list of URLs to scrape.  
+- *--directory*: This option specifies the directory path where the JSON files are located. It is a string value and defaults to *'../data/scraped'* if not provided. This directory is used when transforming JSON files to a DataFrame.
+
+## Example usage:
+
+- `python main.py --scrape --start 0 --end 10`
+- `python main.py --transform --directory '../data/scraped'`
