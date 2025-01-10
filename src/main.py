@@ -1,6 +1,9 @@
 import re
 import os
 import argparse
+
+from matplotlib.colors import to_rgb
+
 from avvo_downloader import AvvoDownloader
 import json
 from pathlib import Path
@@ -10,6 +13,11 @@ from datetime import datetime
 
 def scrape_websites(start: int, end: int, urls: list):
     for url in urls[start:end]:
+        if isinstance(url, tuple):
+            number = url[0]
+            url = url[1]
+        else:
+            number = -1
         (title, question, question_raw, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
         if title is None and question is None and answers is None and lawyers is None and posted_times is None and answer_card_text is None:
             result = {
@@ -33,7 +41,10 @@ def scrape_websites(start: int, end: int, urls: list):
                 'posted_times': [str(time) for time in posted_times],
                 'answer_card_text': answer_card_text
             }
-        filename = f'results_n_{start}.json'
+        if number != -1:
+            filename = f'results_n_{number}.json'
+        else:
+            filename = f'results_n_{start}.json'
         with open(data_path.joinpath(filename), 'w', encoding='utf-8') as json_file:
             json.dump(result, json_file, ensure_ascii=False, indent=4)
         start += 1
@@ -159,6 +170,7 @@ def extract_date(date_string: str) -> datetime | None:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Scrape websites and transform JSON files to DataFrame.')
     parser.add_argument('--scrape', action='store_true', help='Scrape websites')
+    parser.add_argument('--rescrape', action='store_true', help='Rescrape websites')
     parser.add_argument('--transform', action='store_true', help='Transform JSON files to DataFrame')
     parser.add_argument('--start', type=int, default=0, help='Start index for scraping')
     parser.add_argument('--end', type=int, default=None, help='End index for scraping')
@@ -178,6 +190,13 @@ if __name__ == '__main__':
 
         print(f'urls to scrape {len(q_n_a_urls)}')
         scrape_websites(args.start, args.end if args.end else len(q_n_a_urls), q_n_a_urls)
+
+    if args.rescrape:
+        scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
+        to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('title') != 'Not Found').select('number', 'url').unique().sort(
+            'number')[args.start:args.end]
+        toscrape_list_of_tuples = list(map(tuple, to_scrape_df.to_numpy()))
+        scrape_websites(args.start, args.end if args.end else len(toscrape_list_of_tuples), toscrape_list_of_tuples)
 
     if args.transform:
         df = transform_files_to_data_frame(args.directory)
