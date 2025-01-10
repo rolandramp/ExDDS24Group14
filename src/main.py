@@ -194,7 +194,7 @@ if __name__ == '__main__':
     if args.rescrape:
         scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
         to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('title') != 'Not Found').select('number', 'url').unique().sort(
-            'number')[args.start:args.end]
+            'number')
         toscrape_list_of_tuples = list(map(tuple, to_scrape_df.to_numpy()))
         scrape_websites(args.start, args.end if args.end else len(toscrape_list_of_tuples), toscrape_list_of_tuples)
 
