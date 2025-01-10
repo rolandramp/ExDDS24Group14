@@ -195,8 +195,9 @@ if __name__ == '__main__':
         scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
         to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('title') != 'Not Found').select('number', 'url').unique().sort(
             'number')
-        toscrape_list_of_tuples = list(map(tuple, to_scrape_df.to_numpy()))
-        scrape_websites(args.start, args.end if args.end else len(toscrape_list_of_tuples), toscrape_list_of_tuples)
+        start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
+        to_scrape_list_of_tuples = list(map(tuple, to_scrape_df.to_numpy()))
+        scrape_websites(start, args.end if args.end else len(to_scrape_list_of_tuples), to_scrape_list_of_tuples)
 
     if args.transform:
         df = transform_files_to_data_frame(args.directory)
