@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 import time
 from bs4 import BeautifulSoup
 
@@ -28,14 +29,18 @@ class AvvoDownloader(BaseModel):
             if (questions is None) or (len(questions) == 0):
                 title = 'Not Found'
                 question = 'Not Found'
-                question_raw = 'Not Found'
+                question_tags = 'Not Found'
             else:
                 title = (questions[0].find_element(By.TAG_NAME, 'div')
                          .find_element(By.TAG_NAME, 'h1')
                          .text)
                 print(title)
-                questions[0].find_element(By.ID,'topic-expander-text').click()
-                question_raw = questions[0].text
+                try:
+                    topic_expander = questions[0].find_element(By.ID,'topic-expander-text')
+                    topic_expander.click()
+                except NoSuchElementException:
+                    print("Element 'topic-expander-text' not found")
+                question_tags = ','.join([element.text for element in questions[0].find_elements(By.CLASS_NAME, 'related-topic-advice-tag')])
                 question = questions[0].find_element(By.XPATH, './/div//div//div//div//p').text
                 print(question)
             answers = driver.find_elements(By.CLASS_NAME, 'answer-body')
@@ -57,7 +62,7 @@ class AvvoDownloader(BaseModel):
             print(posted_times)
             print(answer_card_text)
 
-            return (title, question, question_raw, answers_text, lawyers, posted_times, answer_card_text)
+            return (title, question, question_tags, answers_text, lawyers, posted_times, answer_card_text)
         except Exception as e:
             return (None, None, None, None, None, None, None)
         finally:
