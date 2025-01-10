@@ -10,12 +10,13 @@ from datetime import datetime
 
 def scrape_websites(start: int, end: int, urls: list):
     for url in urls[start:end]:
-        (title, question, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
+        (title, question, question_raw, answers, lawyers, posted_times, answer_card_text) = loader.scrape_website(url)
         if title is None and question is None and answers is None and lawyers is None and posted_times is None and answer_card_text is None:
             result = {
                 'url': url,
                 'title': 'Not Found',
                 'question': 'Not Found',
+                'quesiton_raw': 'Not Found',
                 'answers': [],
                 'lawyers': [],
                 'posted_times': [],
@@ -26,6 +27,7 @@ def scrape_websites(start: int, end: int, urls: list):
                 'url': url,
                 'title': title,
                 'question': question,
+                'question_raw': question_raw,
                 'answers': answers,
                 'lawyers': lawyers,
                 'posted_times': [str(time) for time in posted_times],
@@ -171,6 +173,9 @@ if __name__ == '__main__':
         with open('../data/question_links_bankruptcy.json', 'r') as file:
             data = json.load(file)
         q_n_a_urls = [url for key in data.keys() for url in data.get(key)]
+
+        #q_n_a_urls= ["https://www.avvo.com/legal-answers/how-does-husband-filing-for-bankruptcy-impact-my-d-5023546.html"]
+
         print(f'urls to scrape {len(q_n_a_urls)}')
         scrape_websites(args.start, args.end if args.end else len(q_n_a_urls), q_n_a_urls)
 
