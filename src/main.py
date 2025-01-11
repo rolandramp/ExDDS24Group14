@@ -173,6 +173,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Scrape websites and transform JSON files to DataFrame.')
     parser.add_argument('--scrape', action='store_true', help='Scrape websites')
     parser.add_argument('--rescrape', action='store_true', help='Rescrape websites')
+    parser.add_argument('--rescrapemissing', action='store_true', help='Rescrape missing websites')
     parser.add_argument('--transform', action='store_true', help='Transform JSON files to DataFrame')
     parser.add_argument('--start', type=int, default=0, help='Start index for scraping')
     parser.add_argument('--end', type=int, default=None, help='End index for scraping')
@@ -205,7 +206,27 @@ if __name__ == '__main__':
             end = len(to_scrape_list_of_tuples)
         scrape_websites(start, end , to_scrape_list_of_tuples)
 
+    if args.rescrapemissing:
+        scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
+        scrape_questions_and_answers_new_df = pl.read_parquet('../data/all_questions_and_answer_new.parquet')
+        truth_df = scrape_questions_and_answers_df.filter(pl.col('title') != 'Not Found').select('number',
+                                                                                                 'url').unique().sort(
+            'number')
+        new_df = scrape_questions_and_answers_new_df.filter(pl.col('title') != 'Not Found').select('number',
+                                                                                                   'url').unique().sort(
+            'number')
+        to_scrape_df = truth_df.select('number', 'url').join(new_df.select('number', 'url'), on=['number', 'url'],
+                                                     how='anti')
+        dict = to_scrape_df.to_dict(as_series=False)
+        to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
+        start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
+        if args.end:
+            end = to_scrape_df.with_row_index().filter(pl.col('number') == args.end).select('index')[0, 0]
+        else:
+            end = len(to_scrape_list_of_tuples)
+        scrape_websites(start, end, to_scrape_list_of_tuples)
+
     if args.transform:
         df = transform_files_to_data_frame(args.directory)
         df = df.sort(by='number')
-        df.write_parquet('../data/all_questions_and_answer.parquet')
+        df.write_parquet('../data/all_questions_and_answer_new.parquet')
