@@ -176,7 +176,7 @@ if __name__ == '__main__':
     parser.add_argument('--rescrapemissing', action='store_true', help='Rescrape missing websites')
     parser.add_argument('--transform', action='store_true', help='Transform JSON files to DataFrame')
     parser.add_argument('--start', type=int, default=0, help='Start index for scraping')
-    parser.add_argument('--end', type=int, default=None, help='End index for scraping')
+    parser.add_argument('--end', type=int, help='End index for scraping')
     parser.add_argument('--directory', type=str, default='../data/scraped', help='Directory path for JSON files')
     args = parser.parse_args()
 
@@ -219,7 +219,10 @@ if __name__ == '__main__':
                                                      how='anti')
         dict = to_scrape_df.to_dict(as_series=False)
         to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
-        start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
+        if args.start == 0:
+            start = to_scrape_df[0].select('number')[0,0]
+        else:
+            start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
         if args.end:
             end = to_scrape_df.with_row_index().filter(pl.col('number') == args.end).select('index')[0, 0]
         else:

@@ -26,11 +26,13 @@ This project requires Selenium for web scraping. You will also need to have Goog
 ## Runtime Parameters
 
 The command line options for the script in **main.py** are as follows:  
-- *--scrape*: This flag indicates that the script should perform the scraping of websites. When this flag is provided, the script will scrape the websites specified in the *question_links_bankruptcy.json* file.  
+- *--scrape*: This flag indicates that the script should perform the scraping of websites. When this flag is provided, the script will scrape the websites specified in the *question_links_bankruptcy.json* file.
+- *--rescrape*: This flag indicates that the script should rescrape the websites. It will use the existing data to determine which websites need to be rescraped.
+- *--rescrapemissing*: This flag indicates that the script should rescrape the missing websites. It will compare the existing data with new data to find and rescrape the missing websites.
 - *--transform*: This flag indicates that the script should transform the JSON files into a DataFrame. When this flag is provided, the script will read the JSON files from the specified directory, process them, and save the resulting DataFrame as a Parquet file.  
 - *--start*: This option specifies the start index for scraping. It is an integer value and defaults to 0 if not provided. It is used to determine the starting point in the list of URLs to scrape.  
 - *--end*: This option specifies the end index for scraping. It is an integer value and defaults to None if not provided. It is used to determine the ending point in the list of URLs to scrape.  
-- *--directory*: This option specifies the directory path where the JSON files are located. It is a string value and defaults to *'../data/scraped'* if not provided. This directory is used when transforming JSON files to a DataFrame.
+- *--directory*: This option specifies the directory path where the JSON files are located. It is a string value and defaults to ../data/scraped if not provided. This directory is used when transforming JSON files to a DataFrame.
 
 ## Example Usage:
 
