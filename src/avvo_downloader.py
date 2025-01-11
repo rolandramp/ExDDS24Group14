@@ -40,6 +40,8 @@ class AvvoDownloader(BaseModel):
                     topic_expander.click()
                 except NoSuchElementException:
                     print("Element 'topic-expander-text' not found")
+                except Exception as e:
+                    print(e)
                 question_tags = ','.join([element.text for element in questions[0].find_elements(By.CLASS_NAME, 'related-topic-advice-tag')])
                 question = questions[0].find_element(By.XPATH, './/div//div//div//div//p').text
 
@@ -61,6 +63,7 @@ class AvvoDownloader(BaseModel):
 
             return (title, question, question_tags, answers_text, lawyers, posted_times, answer_card_text)
         except Exception as e:
+            print(e)
             return (None, None, None, None, None, None, None)
         finally:
             driver.quit()
