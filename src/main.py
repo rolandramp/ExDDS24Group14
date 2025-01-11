@@ -220,7 +220,7 @@ if __name__ == '__main__':
         dict = to_scrape_df.to_dict(as_series=False)
         to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
         if args.start == 0:
-            start = to_scrape_df[0].select('number')[0,0]
+            start = 0
         else:
             start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
         if args.end:
