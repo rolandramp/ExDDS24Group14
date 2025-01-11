@@ -43,8 +43,10 @@ def scrape_websites(start: int, end: int, urls: list):
             }
         if number != -1:
             filename = f'results_n_{number}.json'
+            print(f'writing {number}')
         else:
             filename = f'results_n_{start}.json'
+            print(f'writing {start}')
         with open(data_path.joinpath(filename), 'w', encoding='utf-8') as json_file:
             json.dump(result, json_file, ensure_ascii=False, indent=4)
         start += 1
@@ -195,9 +197,13 @@ if __name__ == '__main__':
         scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
         to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('title') != 'Not Found').select('number', 'url').unique().sort(
             'number')
-        start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
         to_scrape_list_of_tuples = list(map(tuple, to_scrape_df.to_numpy()))
-        scrape_websites(start, args.end if args.end else len(to_scrape_list_of_tuples), to_scrape_list_of_tuples)
+        start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
+        if args.end:
+            end = to_scrape_df.with_row_index().filter(pl.col('number') == args.end).select('index')[0, 0]
+        else:
+            end = len(to_scrape_list_of_tuples)
+        scrape_websites(start, end , to_scrape_list_of_tuples)
 
     if args.transform:
         df = transform_files_to_data_frame(args.directory)

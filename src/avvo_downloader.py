@@ -42,12 +42,12 @@ class AvvoDownloader(BaseModel):
                     print("Element 'topic-expander-text' not found")
                 question_tags = ','.join([element.text for element in questions[0].find_elements(By.CLASS_NAME, 'related-topic-advice-tag')])
                 question = questions[0].find_element(By.XPATH, './/div//div//div//div//p').text
-                print(question)
+
             answers = driver.find_elements(By.CLASS_NAME, 'answer-body')
             answers_text = []
             for answer in answers:
                 answers_text.append(answer.find_element(By.TAG_NAME, 'p').text)
-            print(answers_text)
+
             answer_container = driver.find_element(By.ID, 'answers_container')
             answer_cards = answer_container.find_elements(By.CLASS_NAME, 'qa-lawyer-card')
 
@@ -58,9 +58,6 @@ class AvvoDownloader(BaseModel):
                 lawyers.append(answer_card.find_element(By.CLASS_NAME, 'name-specialty').find_element(By.TAG_NAME, 'a').get_attribute('href'))
                 posted_times.append(answer_card.find_element(By.TAG_NAME, 'time').text)
                 answer_card_text.append(answer_card.text)
-            print(lawyers)
-            print(posted_times)
-            print(answer_card_text)
 
             return (title, question, question_tags, answers_text, lawyers, posted_times, answer_card_text)
         except Exception as e:
