@@ -1,10 +1,26 @@
 {
     "url": "https://www.avvo.com/legal-answers/can-a-defamation-case-be-discharged-in-backruptcy--1313753.html",
-    "title": "Not Found",
-    "question": "Not Found",
-    "quesiton_tags": "Not Found",
-    "answers": [],
-    "lawyers": [],
-    "posted_times": [],
-    "answer_card_text": []
+    "title": "Can a defamation case be discharged in backruptcy court?",
+    "question": "I have been accused of internet libel against an individual, who has threatened a lawsuit. While research seems to suggest that libel/slander cases are rarely pursued and/or successfully proved by plaintiff and that truth in the statement is an absolute defense (which in this case the statement was truthful and well known in the local community), I’m obviously still interested in what happens in the unimaginable event that the individual were able to garner a judgment. If a judgment were to be awarded, could it be discharged under any circumstances, such as a bankruptcy? This is assuming that parties reside in different states (CA and TX).",
+    "question_tags": "Bankruptcy,Bankruptcy adversary proceeding,Debt,Debt discharge,Bankruptcy and debt,Personal injury and defamation,Personal injury and libel,Lawsuits and disputes,Representing yourself",
+    "answers": [
+        "Section 523(a)(6) of the bankruptcy code makes debts nondischargeable if they arise from \"willful and malicious injury by the debtor to another entity or to the property of another entity.\" However, Section 523(c) of the bankruptcy code specifies that such debts will be discharged unless the creditor files a timely complaint within the bankruptcy case in order to prove that the alleged injury arose from the willful and malicious conduct of the debtor. It can cost tens of thousands of dollars to litigate a nondischargeability complaint pursuant to Section 523(a)(6) and, by definition, the defendant is bankrupt. Therefore, the most likely outcome would be that the debt would be discharged.",
+        "Intentional torts are usually not dischargeable.",
+        "This is a great bankruptcy question. I will place you in the bankruptcy area. Good luck."
+    ],
+    "lawyers": [
+        "https://www.avvo.com/attorneys/91106-ca-clifford-bordeaux-127769.html",
+        "https://www.avvo.com/attorneys/89117-nv-marc-randazza-1269075.html",
+        "https://www.avvo.com/attorneys/90210-ca-michael-devereux-65576.html"
+    ],
+    "posted_times": [
+        "on Jul 6, 2013",
+        "on Jul 6, 2013",
+        "on Jul 6, 2013"
+    ],
+    "answer_card_text": [
+        "Answer\nClifford Sculley Bordeaux\nBankruptcy Attorney in Pasadena, CA\n| Licensed for 27 years\n4.96875 stars\n32 reviews\nRating: \n10\nFree Consultation\n Website\n(626) 788-8363\nMessage\nView Profile\nPosted on Jul 6, 2013\nSection 523(a)(6) of the bankruptcy code makes debts nondischargeable if they arise from \"willful and malicious injury by the debtor to another entity or to the property of another entity.\" However, Section 523(c) of the bankruptcy code specifies that such debts will be discharged unless the creditor files a timely complaint within the bankruptcy case in order to prove that the alleged injury arose from the willful and malicious conduct of the debtor. It can cost tens of thousands of dollars to litigate a nondischargeability complaint pursuant to Section 523(a)(6) and, by definition, the defendant is bankrupt. Therefore, the most likely outcome would be that the debt would be discharged.\nHelpful (1)\n8 lawyers agree",
+        "Answer\nMarc John Randazza\nConstitutional Law Attorney in Las Vegas, NV (Licensed in CA)\n4.741935483871 stars\n31 reviews\nRating: \n6.8\nView Phone Number\nMessage\nView Profile\nPosted on Jul 6, 2013\nIntentional torts are usually not dischargeable.\nHelpful (1)\n4 lawyers agree",
+        "Answer\nMichael Sean Devereux\nCivil Rights Attorney in Beverly Hills, CA\n4.36 stars\n25 reviews\nRating: \n1.0\nView Phone Number\nMessage\nView Profile\nPosted on Jul 6, 2013\nThis is a great bankruptcy question. I will place you in the bankruptcy area. Good luck.\nLegal Consult Recommended\nDisclaimer\nHelpful (1)\n3 lawyers agree"
+    ]
 }
