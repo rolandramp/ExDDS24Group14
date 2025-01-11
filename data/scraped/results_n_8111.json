@@ -1,10 +1,26 @@
 {
     "url": "https://www.avvo.com/legal-answers/how-to-find-out-who-owns-my-mortgage--441280.html",
-    "title": "Not Found",
-    "question": "Not Found",
-    "quesiton_tags": "Not Found",
-    "answers": [],
-    "lawyers": [],
-    "posted_times": [],
-    "answer_card_text": []
+    "title": "How to find out who owns my mortgage?",
+    "question": "I am doing a motion to get rid of second mortgage in Chapter 13. The paralegal that is helping me can't figure out who to name as an opposing party in that motion. Neither of the mortgage holders filed a proof of claim. I have both deeds to the property. The second mortgage originally belonged to Lehman Brothers FSB, which is now Aurora Bank. But the bills I receive from, and pay them to, Wells Fargo Bank. There was nothing recorded in the clerk-recorder's office about Wells Fargo buying that mortgage. I guess they are just a servicer of the mortgage.",
+    "question_tags": "Bankruptcy,Bankruptcy proof of claim,Bankruptcy adversary proceeding,Debt,Lien,Bankruptcy and debt",
+    "answers": [
+        "In addition to the two very good answers you've received, I'll add that you want to achieve a result that any title company would honor in the future to issue a clean title without being clouded by that lien. That means that the order requested (and received from the judge) must include enough provisions to accomplish that, and also you should consider using an adversary proceeding instead of a motion because (1) it provides the opportunity to request more types of relief than a motion and (2) the court will issue a judgment which any title company will understand, instead of just an order (and probably an interim order at that, conditioned on the Chapter 13 plan being completed) which a title company may or may not understand.\n\nIf all this sounds like there's a lot more to a successful lien strip than meets the eye, you would be right. You should retain a qualified bankruptcy attorney in your area for this matter.",
+        "In order to find out who actually owns the beneficial interest in your note at this time, you will need to send what is called a Qualified Written Request to the servicer of the loan and request that they identify who actually owns the note. Be careful to find out if Wells Fargo Bank has designated an address for receipt of Qualified Written Requests (\"QWR\") because if they have you must send the QWR to that designated address. I would consult an attorney if I were you as getting this information can be tricky and you may have a cause of action against the bank if they fail to respond to your QWR within a designated time.\n\nAs to whom to name as opposing party, it never hurts to name everyone out of an abundance of caution.",
+        "The mortgage is filed at the clerks office in the county where the property is located. The Note is what has been sold. Wells Fargo is very likely just the servicer of the Note.\n\nIf you do not have an attorney you will need one to move against the parties that do or may have a beneficial interest in the Note."
+    ],
+    "lawyers": [
+        "https://www.avvo.com/attorneys/94903-ca-malcolm-ruthven-250064.html",
+        "https://www.avvo.com/attorneys/93901-ca-stephen-kim-360431.html",
+        "https://www.avvo.com/attorneys/13201-ny-theodore-araujo-868888.html"
+    ],
+    "posted_times": [
+        "on Mar 29, 2011",
+        "on Mar 29, 2011",
+        "on Mar 29, 2011"
+    ],
+    "answer_card_text": [
+        "Answer\nMalcolm Ruthven\nBankruptcy Attorney in Emeryville, CA\n5 stars\n23 reviews\nRating: \n8.9\nView Phone Number\nMessage\nView Profile\nPosted on Mar 29, 2011\nIn addition to the two very good answers you've received, I'll add that you want to achieve a result that any title company would honor in the future to issue a clean title without being clouded by that lien. That means that the order requested (and received from the judge) must include enough provisions to accomplish that, and also you should consider using an adversary proceeding instead of a motion because (1) it provides the opportunity to request more types of relief than a motion and (2) the court will issue a judgment which any title company will understand, instead of just an order (and probably an interim order at that, conditioned on the Chapter 13 plan being completed) which a title company may or may not understand.\n\nIf all this sounds like there's a lot more to a successful lien strip than meets the eye, you would be right. You should retain a qualified bankruptcy attorney in your area for this matter.\nLegal Consult Recommended\nHelpful (0)",
+        "Answer\nStephen Harry Kim\nBankruptcy Attorney in Salinas, CA\n5 stars\n5 reviews\nRating: \n7.5\nView Phone Number\nMessage\nView Profile\nPosted on Mar 29, 2011\nIn order to find out who actually owns the beneficial interest in your note at this time, you will need to send what is called a Qualified Written Request to the servicer of the loan and request that they identify who actually owns the note. Be careful to find out if Wells Fargo Bank has designated an address for receipt of Qualified Written Requests (\"QWR\") because if they have you must send the QWR to that designated address. I would consult an attorney if I were you as getting this information can be tricky and you may have a cause of action against the bank if they fail to respond to your QWR within a designated time.\n\nAs to whom to name as opposing party, it never hurts to name everyone out of an abundance of caution.\nHelpful (0)",
+        "Answer\nTheodore Lyons Araujo\nBankruptcy Attorney in Syracuse, NY\n4.96 stars\n25 reviews\nRating Not Displayed\nView Phone Number\nMessage\nView Profile\nPosted on Mar 29, 2011\nThe mortgage is filed at the clerks office in the county where the property is located. The Note is what has been sold. Wells Fargo is very likely just the servicer of the Note.\n\nIf you do not have an attorney you will need one to move against the parties that do or may have a beneficial interest in the Note.\nLegal Consult Recommended\nHelpful (0)"
+    ]
 }
