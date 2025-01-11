@@ -1,10 +1,26 @@
 {
     "url": "https://www.avvo.com/legal-answers/in-chapter-11-what-is-the-lookback-period-for-paid-241895.html",
-    "title": "Not Found",
-    "question": "Not Found",
-    "quesiton_tags": "Not Found",
-    "answers": [],
-    "lawyers": [],
-    "posted_times": [],
-    "answer_card_text": []
+    "title": "In Chapter 11 what is the lookback period for paid bill just prior to the filing?",
+    "question": "Our business has taken a turn for the worse and we have to file for Chapter 11. How many days is the lookback peroid from the date we file for bankruptcy? How far can we \"look back\" and retrieve the money that we used to pay bills?",
+    "question_tags": "Bankruptcy,Bankruptcy petition,Bankruptcy documents,Debt,Consumer debt,Bankruptcy and debt",
+    "answers": [
+        "The lookback period for preferential transfers under section 547 of the Bankruptcy Code is 90 days with respect to non-insiders, and 1 year with respect to insiders.\n\nTo recover payments based upon those payments having been fraudulent transfers (which is unlikely) the applicable lookback period is 2 years under section 548 of the US Bankruptcy Code and potentially longer under the state-law statute of limitations applicable to the UFTA.\n\nNote that the jurisdictional minimum is, as of April 1, 2010, $5,850. That assumes that the chapter 11 debtor's debts are not primarily consumer debts.\n\nThese are general guidelines. If you are contemplating a chapter 11 filing, you will need to consult with an attorney who practices in that field.",
+        "In Northwestern Ohio, the Trustees are not interested in taking back preferential payments to \"non-insiders\" when the payments total less than $600.00 in the 90 day lookback period. Still, I do not recommend making such payments.",
+        "If the creditors are typical vendors and not related to your company (or you), the lookback period to recover preferential payments is ninety days from the date that the bankruptcy petition was filed."
+    ],
+    "lawyers": [
+        "https://www.avvo.com/attorneys/48130-mi-thomas-morris-754032.html",
+        "https://www.avvo.com/attorneys/44870-oh-charles-smith-572821.html",
+        "https://www.avvo.com/attorneys/91345-ca-lawrence-simons-1949906.html"
+    ],
+    "posted_times": [
+        "on Apr 7, 2010",
+        "on Apr 6, 2010",
+        "on Apr 6, 2010"
+    ],
+    "answer_card_text": [
+        "Answer\nThomas R. Morris\nBankruptcy Attorney in Dexter, MI\n5 stars\n1 review\nRating: \n10\nView Phone Number\nMessage\nView Profile\nPosted on Apr 7, 2010\nThe lookback period for preferential transfers under section 547 of the Bankruptcy Code is 90 days with respect to non-insiders, and 1 year with respect to insiders.\n\nTo recover payments based upon those payments having been fraudulent transfers (which is unlikely) the applicable lookback period is 2 years under section 548 of the US Bankruptcy Code and potentially longer under the state-law statute of limitations applicable to the UFTA.\n\nNote that the jurisdictional minimum is, as of April 1, 2010, $5,850. That assumes that the chapter 11 debtor's debts are not primarily consumer debts.\n\nThese are general guidelines. If you are contemplating a chapter 11 filing, you will need to consult with an attorney who practices in that field.\nLegal Consult Recommended\nHelpful (0)\n1 lawyer agrees",
+        "Answer\nCharles Ross Smith III\nBankruptcy Attorney in Sandusky, OH\n5 stars\n1 review\nRating Not Displayed\nView Phone Number\nMessage\nView Profile\nPosted on Apr 6, 2010\nIn Northwestern Ohio, the Trustees are not interested in taking back preferential payments to \"non-insiders\" when the payments total less than $600.00 in the 90 day lookback period. Still, I do not recommend making such payments.\nLegal Consult Recommended\nHelpful (0)",
+        "Answer\nLawrence David Simons\nBankruptcy Attorney in Mission Hills, CA\nNot yet reviewed\nRating: \n8.3\nView Phone Number\nMessage\nView Profile\nPosted on Apr 6, 2010\nIf the creditors are typical vendors and not related to your company (or you), the lookback period to recover preferential payments is ninety days from the date that the bankruptcy petition was filed.\nHelpful (0)\n2 lawyers agree"
+    ]
 }

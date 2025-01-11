@@ -1,10 +1,30 @@
 {
     "url": "https://www.avvo.com/legal-answers/am-i-personally-liable-for-minimum-corporate-taxes-247751.html",
-    "title": "Not Found",
-    "question": "Not Found",
-    "quesiton_tags": "Not Found",
-    "answers": [],
-    "lawyers": [],
-    "posted_times": [],
-    "answer_card_text": []
+    "title": "Am I personally liable for minimum corporate taxes incurred after closing of a business but before corporate dissolution?",
+    "question": "In 2004 I started a plumbing business, ran it for about a year and a half, and decided to shut it down, so I paid all my bills and filed a final corporate return in 2006. My tax man gave me a dissolution form to send in.",
+    "question_tags": "S-corporation,Small business taxes,Bankruptcy,Debt,Bankruptcy and debt,Business,Tax law",
+    "answers": [
+        "A corporate shareholder is generally not personally liable for the debts and obligations of the corporation, even if those debts are owed to the Franchise Tax Board.\n\nA shareholder can, however, be held personally liable under the \"alter-ego\" theory of liability if he failed to run the corporation as a separate legal entity. This can occur when shareholders fail to distinguish their personal finances from that of the corporation, and do not comply with corporate formalities.",
+        "It does not make any difference whether your corporation was a C or an S Corporation. Even in an S corporation, liability for taxes and other obligations do not pass through to the shareholders.\n\nYou will only have liability to the extent that you received corporate assets, barring alter ego or transferee liability issues. As a practical matter, the Franchise Tax Board doesn't often pursue shareholders for failure to pay corporate taxes.",
+        "The post at the link below addresses the issue that you are raising. Here is the most important sentence:\n\n\"Assuming that you go through the dissolution process properly and that you do not have any 'alter ego' problems, your personal liability generally will be limited to the amount of any distributions that you received at the time of dissolution.\"",
+        "The corporation is liable for the minimum taxes. If you set the business up as a pass-through entity, then you will likely be liable for the minimum taxes."
+    ],
+    "lawyers": [
+        "https://www.avvo.com/attorneys/92116-ca-jeffrey-webb-1756540.html",
+        "https://www.avvo.com/attorneys/90025-ca-dennis-brager-292613.html",
+        "https://www.avvo.com/attorneys/94611-ca-dana-shultz-239301.html",
+        "https://www.avvo.com/attorneys/kevin-griffith-146469.html"
+    ],
+    "posted_times": [
+        "on Apr 17, 2010",
+        "on Apr 15, 2010",
+        "on Apr 13, 2010",
+        "on Apr 13, 2010"
+    ],
+    "answer_card_text": [
+        "Answer\nJeffrey Michael Webb\nBusiness Attorney in San Diego, CA\nNot yet reviewed\nRating Not Displayed\nView Phone Number\nMessage\nView Profile\nPosted on Apr 17, 2010\nA corporate shareholder is generally not personally liable for the debts and obligations of the corporation, even if those debts are owed to the Franchise Tax Board.\n\nA shareholder can, however, be held personally liable under the \"alter-ego\" theory of liability if he failed to run the corporation as a separate legal entity. This can occur when shareholders fail to distinguish their personal finances from that of the corporation, and do not comply with corporate formalities.\nHelpful (0)",
+        "Answer\nDennis N. Brager\nTax Lawyer in Los Angeles, CA\n5 stars\n12 reviews\nRating: \n10\nView Phone Number\nView Profile\nPosted on Apr 15, 2010\nIt does not make any difference whether your corporation was a C or an S Corporation. Even in an S corporation, liability for taxes and other obligations do not pass through to the shareholders.\n\nYou will only have liability to the extent that you received corporate assets, barring alter ego or transferee liability issues. As a practical matter, the Franchise Tax Board doesn't often pursue shareholders for failure to pay corporate taxes.\nHelpful (0)\n1 lawyer agrees",
+        "Answer\nDana Howard Shultz\nBusiness Attorney in Piedmont, CA\n5 stars\n6 reviews\nRating Not Displayed\nView Phone Number\nView Profile\nPosted on Apr 13, 2010\nThe post at the link below addresses the issue that you are raising. Here is the most important sentence:\n\n\"Assuming that you go through the dissolution process properly and that you do not have any 'alter ego' problems, your personal liability generally will be limited to the amount of any distributions that you received at the time of dissolution.\"\nHelpful (0)\n1 lawyer agrees",
+        "Answer\nKevin James Griffith\nLitigation Lawyer\nNot yet reviewed\nRating: \n6.7\nView Profile\nPosted on Apr 13, 2010\nThe corporation is liable for the minimum taxes. If you set the business up as a pass-through entity, then you will likely be liable for the minimum taxes.\nHelpful (0)"
+    ]
 }
