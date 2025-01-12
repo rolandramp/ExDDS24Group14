@@ -3,6 +3,7 @@ import os
 import argparse
 
 from matplotlib.colors import to_rgb
+from pandas.core.strings.accessor import cat_core
 
 from avvo_downloader import AvvoDownloader
 import json
@@ -104,6 +105,7 @@ def extract_details(answer_card_texts: list) -> dict:
 def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl.DataFrame:
     data_frame_list = []
     json_files = [filename for filename in os.listdir(directory_path) if filename.endswith('.json')]
+    brocken_files = []
     for filename in json_files:
         match = re.search(r'_n_(\d+)', filename)
         if match:
@@ -116,6 +118,7 @@ def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl
                     'url': data['url'],
                     'title': data['title'],
                     'question': data['question'],
+                    'question_tags': None,
                     'answers': None,
                     'lawyers': None,
                     'posted_times': None,
@@ -127,25 +130,31 @@ def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl
                     'lawyers_agree': None
                 })
             else:
-                lawyers = [anonymize_lawyer_name_from_url(lawyer) for lawyer in data['lawyers']]
-                details = extract_details(data['answer_card_text'])
-                posted_times = [extract_date(time) for time in data['posted_times']]
-                df = pl.DataFrame({
-                    'number': [question_number] * len(data['answers']),
-                    'url': [data['url']] * len(data['answers']),
-                    'title': [data['title']] * len(data['answers']),
-                    'question': [data['question']] * len(data['answers']),
-                    'answers': data['answers'],
-                    'lawyers': lawyers,
-                    'posted_times': posted_times,
-                    'answer_card_text': data['answer_card_text'],
-                    'stars': details['stars'],
-                    'reviews': details['reviews'],
-                    'rating': details['rating'],
-                    'helpful': details['helpful'],
-                    'lawyers_agree': details['lawyers_agree']
-                })
+                try:
+                    lawyers = [anonymize_lawyer_name_from_url(lawyer) for lawyer in data['lawyers']]
+                    details = extract_details(data['answer_card_text'])
+                    posted_times = [extract_date(time) for time in data['posted_times']]
+                    df = pl.DataFrame({
+                        'number': [question_number] * len(data['answers']),
+                        'url': [data['url']] * len(data['answers']),
+                        'title': [data['title']] * len(data['answers']),
+                        'question': [data['question']] * len(data['answers']),
+                        'question_tags': [data['question_tags']] * len(data['answers']),
+                        'answers': data['answers'],
+                        'lawyers': lawyers,
+                        'posted_times': posted_times,
+                        'answer_card_text': data['answer_card_text'],
+                        'stars': details['stars'],
+                        'reviews': details['reviews'],
+                        'rating': details['rating'],
+                        'helpful': details['helpful'],
+                        'lawyers_agree': details['lawyers_agree']
+                    })
+                except Exception as e:
+                    brocken_files.append(question_number)
+                    continue
             data_frame_list.append(df)
+    print(brocken_files)
     return pl.concat(data_frame_list)
 
 
@@ -174,6 +183,7 @@ if __name__ == '__main__':
     parser.add_argument('--scrape', action='store_true', help='Scrape websites')
     parser.add_argument('--rescrape', action='store_true', help='Rescrape websites')
     parser.add_argument('--rescrapemissing', action='store_true', help='Rescrape missing websites')
+    parser.add_argument('--rerere', action='store_true', help='Rescrape missing websites')
     parser.add_argument('--transform', action='store_true', help='Transform JSON files to DataFrame')
     parser.add_argument('--start', type=int, default=0, help='Start index for scraping')
     parser.add_argument('--end', type=int, help='End index for scraping')
@@ -217,6 +227,26 @@ if __name__ == '__main__':
             'number')
         to_scrape_df = truth_df.select('number', 'url').join(new_df.select('number', 'url'), on=['number', 'url'],
                                                      how='anti')
+        dict = to_scrape_df.to_dict(as_series=False)
+        to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
+        if args.start == 0:
+            start = 0
+        else:
+            start = to_scrape_df.with_row_index().filter(pl.col('number') == args.start).select('index')[0, 0]
+        if args.end:
+            end = to_scrape_df.with_row_index().filter(pl.col('number') == args.end).select('index')[0, 0]
+        else:
+            end = len(to_scrape_list_of_tuples)
+        scrape_websites(start, end, to_scrape_list_of_tuples)
+
+    if args.rerere:
+        scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
+
+        brocken = [9853, 9854, 9855, 9856, 9857, 9858, 9860, 9861, 9862, 9863, 9865, 9866, 9867, 9868, 9870, 9871,
+                   9872, 9874, 9875, 9876, 9877, 9881, 9887, 9890, 9892, 9893, 9897, 9898, 9902, 9903, 9907, 9908, 9912,
+                   9913, 9917, 9918, 9922, 9923, 9927, 9928, 9932, 9933, 9937, 9938]
+
+        to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('number').is_in(brocken)).select(('number', 'url')).unique().sort('number')
         dict = to_scrape_df.to_dict(as_series=False)
         to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
         if args.start == 0:
