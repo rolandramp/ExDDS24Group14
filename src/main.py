@@ -71,6 +71,7 @@ def extract_details(answer_card_texts: list) -> dict:
     rating = []
     helpful = []
     lawyers_agree = []
+    best_answer = []
     for answer_card_text in answer_card_texts:
         details = {}
 
@@ -94,11 +95,16 @@ def extract_details(answer_card_texts: list) -> dict:
         lawyers_agree_match = re.search(r'(\d+) lawyer(s)? agree(s)?', answer_card_text)
         lawyers_agree.append(int(lawyers_agree_match.group(1)) if lawyers_agree_match else None)
 
+        # Extract "Selected as best answer"
+        best_answer_match = re.search(r'Selected as best answer', answer_card_text)
+        best_answer.append(True if best_answer_match else False)
+
     details['stars'] = stars
     details['reviews'] = reviews
     details['rating'] = rating
     details['helpful'] = helpful
     details['lawyers_agree'] = lawyers_agree
+    details['best_answer'] = best_answer
     return details
 
 
@@ -127,7 +133,8 @@ def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl
                     'reviews': None,
                     'rating': None,
                     'helpful': None,
-                    'lawyers_agree': None
+                    'lawyers_agree': None,
+                    'best_answer': None
                 })
             else:
                 try:
@@ -148,7 +155,8 @@ def transform_files_to_data_frame(directory_path: str = '../data/scraped') -> pl
                         'reviews': details['reviews'],
                         'rating': details['rating'],
                         'helpful': details['helpful'],
-                        'lawyers_agree': details['lawyers_agree']
+                        'lawyers_agree': details['lawyers_agree'],
+                        'best_answer': details['best_answer']
                     })
                 except Exception as e:
                     brocken_files.append(question_number)
@@ -242,11 +250,11 @@ if __name__ == '__main__':
     if args.rerere:
         scrape_questions_and_answers_df = pl.read_parquet('../data/all_questions_and_answer.parquet')
 
-        brocken = [9853, 9854, 9855, 9856, 9857, 9858, 9860, 9861, 9862, 9863, 9865, 9866, 9867, 9868, 9870, 9871,
-                   9872, 9874, 9875, 9876, 9877, 9881, 9887, 9890, 9892, 9893, 9897, 9898, 9902, 9903, 9907, 9908, 9912,
-                   9913, 9917, 9918, 9922, 9923, 9927, 9928, 9932, 9933, 9937, 9938]
+        broken = [9853, 9854, 9855, 9856, 9857, 9858, 9860, 9861, 9862, 9863, 9865, 9866, 9867, 9868, 9870, 9871,
+                  9872, 9874, 9875, 9876, 9877, 9881, 9887, 9890, 9892, 9893, 9897, 9898, 9902, 9903, 9907, 9908, 9912,
+                  9913, 9917, 9918, 9922, 9923, 9927, 9928, 9932, 9933, 9937, 9938]
 
-        to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('number').is_in(brocken)).select(('number', 'url')).unique().sort('number')
+        to_scrape_df = scrape_questions_and_answers_df.filter(pl.col('number').is_in(broken)).select(('number', 'url')).unique().sort('number')
         dict = to_scrape_df.to_dict(as_series=False)
         to_scrape_list_of_tuples = list(zip(dict['number'], dict['url']))
         if args.start == 0:
