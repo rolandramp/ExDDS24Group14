@@ -151,3 +151,6 @@ websocket-client==1.8.0
 widgetsnbextension==4.0.13
 wsproto==1.2.0
 zope.interface==7.2
+pyarrow==18.1.0
+torch==2.5.1
+transformers==4.47.1
