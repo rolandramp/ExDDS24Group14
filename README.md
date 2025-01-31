@@ -43,3 +43,6 @@ The command line options for the script in **main.py** are as follows:
 
 - `python main.py --scrape --start 0 --end 10`
 - `python main.py --transform --directory '../data/scraped'`
+
+# BERT Baseline
+The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. If this is not necessary, simply execute the cells for evaluation that load the trained model bert_ranker.pth.

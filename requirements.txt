@@ -154,3 +154,5 @@ zope.interface==7.2
 pyarrow==18.1.0
 torch==2.5.1
 transformers==4.47.1
+scikit-learn==1.6.0
+pickle-mixin==4.0
