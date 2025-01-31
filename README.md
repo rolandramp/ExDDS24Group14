@@ -33,6 +33,8 @@ The command line options for the script in **main.py** are as follows:
 - *--start*: This option specifies the start index for scraping. It is an integer value and defaults to 0 if not provided. It is used to determine the starting point in the list of URLs to scrape.  
 - *--end*: This option specifies the end index for scraping. It is an integer value and defaults to None if not provided. It is used to determine the ending point in the list of URLs to scrape.  
 - *--directory*: This option specifies the directory path where the JSON files are located. It is a string value and defaults to ../data/scraped if not provided. This directory is used when transforming JSON files to a DataFrame.
+- *--previous*: This option specifies the path to the previous Parquet file. It is used as a source for rescraping websites.
+- *--actual*: This option specifies the path to the actual Parquet file. It is used as a source for rescraping missing websites.
 
 ## Example Usage:
 
