@@ -8,6 +8,9 @@ Arian Askari, Suzan Verberne, and Gabriella Pasi (ECIR 2022)](https://doi.org/10
 
 This paper reveres also to the following GitHub repository [EF_in_Legal_CQA-ECIR2022](https://github.com/arian-askari/EF_in_Legal_CQA-ECIR2022.git)
 
+# Scraping
+
+The following section describes how to scrape the data from the websites. The scraping is done with the help of Selenium and ChromeDriver. The scraping script is located in the **main.py** file.
 
 ## Setup
 
