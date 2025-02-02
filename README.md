@@ -52,5 +52,7 @@ The command line options for the script in **main.py** are as follows:
 - parse_file.py - script parses output of model1 structurated in .json file; inside main function file paths of models' results should be specified, as first arguments of functions tranfrom_to_txt_1 and tranfrom_to_txt_2; second arguments are txt format of results; according to resulting files, final version are created, after performing interseption function, where only labeled lawyers are extracted; according to them metrics are calculated with function calculate_metrics
 
 # BERT Baseline
-The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. If this is not necessary, simply execute the cells for evaluation that load the trained model bert_ranker.pth.
+The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. 
+
+If this is not desired, simply exclude the code for training and run the cells for evaluation that load the trained model bert_ranker.pth. The model is linked to the Zenodo project - download it there and place it into the same folder as the bert_baseline notebook.
 
