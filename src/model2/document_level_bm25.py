@@ -1,15 +1,14 @@
 # This script is used to rank the answers based on the BM25 score for each query.
 import pandas as pd
-from collections import Counter
 import json
 from rank_bm25 import BM25Okapi
 
 # Load the data
-data = pd.read_parquet("../../data/all_questions_and_answer_new.parquet")
-queries_path = "../../data/own_files/queries_bankruptcy_own.csv"
+data = pd.read_parquet("data\\all_questions_and_answer_new.parquet")
+queries_path = "data\\own_files\\queries_bankruptcy_own.csv"
 queries = open(queries_path, "r").read().splitlines()
 queries = queries[1:len(queries)]  # remove header
-df_lawyer_ids = pd.read_csv("../../data/own_files/lawyerid_to_lawyerurl_own.csv")
+df_lawyer_ids = pd.read_csv("data\\own_files\\lawyerid_to_lawyerurl_own.csv")
 data_wid = pd.merge(data, df_lawyer_ids, left_on='lawyers', right_on='lawyer_url', how='left')
 data_wid = data_wid.drop(columns=['lawyer_url']) # data with lawyer id
 
@@ -67,12 +66,12 @@ for query in queries:
         )
 
 # Save the results
-model2_doclevel_ranking_path = "model_two_doclevel_bm25_ranking.dict"
+model2_doclevel_ranking_path = "src\\model2\\model_two_doclevel_bm25_ranking.dict"
 with open(model2_doclevel_ranking_path, "w") as f:
     json.dump(candidates_scores_doclevel, f, indent=4)
 
 model2_doclevel_scoreperdoc_ranking_path = (
-    "model_two_doclevel_score_perdoc_bm25_ranking.dict"
+    "src\\model2\\model_two_doclevel_score_perdoc_bm25_ranking.dict"
 )
 with open(model2_doclevel_scoreperdoc_ranking_path, "w") as f:
     json.dump(docs_score_with_owner_candidate_id, f, indent=4)

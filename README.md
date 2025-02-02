@@ -53,10 +53,10 @@ start main.py from inside the src folder
 - parse_file.py - script parses output of model1 structurated in .json file; inside main function file paths of models' results should be specified, as first arguments of functions tranfrom_to_txt_1 and tranfrom_to_txt_2; second arguments are txt format of results; according to resulting files, final version are created, after performing interseption function, where only labeled lawyers are extracted; according to them metrics are calculated with function calculate_metrics
 
 # Model 2
-start python scripts from inside the src/model2 folder
 
 This folder contains the files needed to perform the document-based models. There are two .py files to create each model, one should simply run it, as the files it uses are already on this repository, only make sure to have all the needed python libraries installed. It will then create 4 json files, which are already in this folder (if you run again, change their names, unless you want to overwrite the previous files).
 The last file is a .ipynb (a Jupyter Notebook, using python). It can be used to calculate the evaluation metrics for the models. It's also simple to run, once you have connected to the repository.
+This model was run on VSCode, in a Windows 11 Home.
 
 # BERT Baseline
 The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. 
