@@ -56,3 +56,8 @@ The final results are present in the executed jupyter notebook "bert_baseline.ip
 
 If this is not desired, simply exclude the code for training and run the cells for evaluation that load the trained model bert_ranker.pth. The model is linked to the Zenodo project - download it there and place it into the same folder as the bert_baseline notebook.
 
+# Document_based
+
+This folder contains the files needed to perform the document-based models. There are two .py files to create each model, one should simply run it, as the files it uses are already on this repository, only make sure to have all the needed python libraries installed. It will then create 4 json files, which are already in this folder (if you run again, change their names, unless you want to overwrite the previous files).
+
+The last file is a .ipynb (a Jupyter Notebook, using python). It can be used to calculate the evaluation metrics for the models. It's also simple to run, once you have connected to the repository.
