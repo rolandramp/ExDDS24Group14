@@ -40,6 +40,7 @@ The command line options for the script in **main.py** are as follows:
 - *--actual*: This option specifies the path to the actual Parquet file. It is used as a source for rescraping missing websites.
 
 ## Example Usage:
+start main.py from inside the src folder
 
 - `python main.py --scrape --start 0 --end 10`
 - `python main.py --transform --directory '../data/scraped'`
@@ -51,13 +52,13 @@ The command line options for the script in **main.py** are as follows:
 - bm25_model.py - script implements model 1 in bm25 variant; it has train and test function that should be called in main function; it is necessary to have elasticsearch installed and run, available on port 9200, with http authentication username and password specified inside elasticsearch object
 - parse_file.py - script parses output of model1 structurated in .json file; inside main function file paths of models' results should be specified, as first arguments of functions tranfrom_to_txt_1 and tranfrom_to_txt_2; second arguments are txt format of results; according to resulting files, final version are created, after performing interseption function, where only labeled lawyers are extracted; according to them metrics are calculated with function calculate_metrics
 
-# BERT Baseline
-The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. 
-
-If this is not desired, simply exclude the code for training and run the cells for evaluation that load the trained model bert_ranker.pth. The model is linked to the Zenodo project - download it there and place it into the same folder as the bert_baseline notebook.
-
-# Document_based
+# Model 2
+start python scripts from inside the src/model2 folder
 
 This folder contains the files needed to perform the document-based models. There are two .py files to create each model, one should simply run it, as the files it uses are already on this repository, only make sure to have all the needed python libraries installed. It will then create 4 json files, which are already in this folder (if you run again, change their names, unless you want to overwrite the previous files).
-
 The last file is a .ipynb (a Jupyter Notebook, using python). It can be used to calculate the evaluation metrics for the models. It's also simple to run, once you have connected to the repository.
+
+# BERT Baseline
+The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. 
+If this is not desired, simply exclude the code for training and run the cells for evaluation that load the trained model bert_ranker.pth. The model is linked to the Zenodo project - download it there and place it into the same folder as the bert_baseline notebook.
+
