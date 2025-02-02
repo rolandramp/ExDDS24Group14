@@ -47,7 +47,7 @@ The command line options for the script in **main.py** are as follows:
 # BERT Baseline
 The final results are present in the executed jupyter notebook "bert_baseline.ipynb". To run the code yourself, simply execute the entire notebook. Note that training BERT with this setup using a GPU T4 x2 takes about 1h 36mins. If this is not necessary, simply execute the cells for evaluation that load the trained model bert_ranker.pth.
 
-#Model 1
+# Model 1
 - elasticSearch - can be installed from https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html and run by startig .bat file
 - requirements.txt - python virtual environment requirements, can be installed in started enviroment with *pip install -r requirement.txt*
 - lm_model.py - script implements model 1 in lm variant; it has train and test function that should be called in main function; it is necessary to have elasticsearch installed and run, available on port 9200, with http authentication username and password specified inside elasticsearch object
