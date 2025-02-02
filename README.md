@@ -45,6 +45,29 @@ start main.py from inside the src folder
 - `python main.py --scrape --start 0 --end 10`
 - `python main.py --transform --directory '../data/scraped'`
 
+## Extracted date format
+
+The produced parquet file has the following columns:
+
+| **Field**           | **Description**                                                                                     |
+|---------------------|-----------------------------------------------------------------------------------------------------|
+| number              | A unique identifier assigned to each entry or record                                                |
+| url                 | The web address where the entry or record can be accessed                                           |
+| title               | The title or headline of the entry or record                                                        |
+| question            | The question of a person                                                                            |
+| question\_tags      | Keywords or tags associated with the question to categorize and identify its main topics            |
+| answers             | Responses provided by a lawyer                                                                      |
+| lawyers             | The anonymized lawyer who provided answer to the question                                           |
+| posted\_times       | The timestamp indicating when the answers were posted                                               |
+| answer\_card\_text  | The full raw scraped raw answer                                                                     |
+| stars               | A rating between 0 and 5 to indicate the quality of the lawyer                                      |
+| reviews             | A numerical value indicating the amount of reviews done                                             |
+| rating              | A numerical value representing the overall evaluation of the answers or the lawyer                  |
+| helpful             | An indicator of how many users found the answers helpful                                            |
+| lawyers\_agree      | The number of lawyers who agree with a particular answer or response                                |
+| best\_answer        | The answer that has been marked as the most useful or accurate by the question poster or the community |
+
+
 # Model 1
 - elasticSearch - can be installed from https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html and run by startig .bat file
 - requirements.txt - python virtual environment requirements, can be installed in started enviroment with *pip install -r requirement.txt*
